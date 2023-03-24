@@ -1,11 +1,4 @@
-FROM eclipse-temurin:17-jdk-jammy
- 
-WORKDIR /app
-
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:resolve
-
-COPY src ./src
-
-CMD ["./mvnw", "spring-boot:run"]
+FROM eclipse-temurin:17-jdk-focal
+ADD target/spring-petclinic-2.7.0-SNAPSHOT.jar spring-petclinic-2.7.0-SNAPSHOT.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "spring-petclinic-2.7.0-SNAPSHOT.jar"] 
